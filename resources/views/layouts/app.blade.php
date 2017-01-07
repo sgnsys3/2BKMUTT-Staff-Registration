@@ -21,5 +21,6 @@
     <script src="/js/materialize.min.js"></script>
     <script src="/js/sweetalert.min.js"></script>
     <script src="/js/2bstaff.js"></script>
+    @yield('extendScript')
   </body>
 </html>
