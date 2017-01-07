@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>2B-KMUTT Staff Registration</title>
-    </head>
-      
-    <body>
-    </body>
-</html>
+@extends('layouts.app')
+
+@section('content')
+  <div class="container valign-wrapper" style="width: 100vw; height:100vh;">
+    <div class="valign" style="width:100vw">
+      <div id="mycontainer" class="pulse">
+        <h5 class="center-align">"ส่งต่อความสุข ที่ไม่มีวันสิ้นสุด"</h5>
+        <h6 class="center-align">2B-KMUTT : Staff</h6>
+      </div>
+    </div>
+  </div>
+@endsection
