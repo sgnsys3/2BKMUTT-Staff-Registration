@@ -58,7 +58,7 @@
                 </div>
                 <div class="row">
                     <div class="col s12 center-align">
-                        <button class="btn waves-effect waves-light" type="submit" name="action">ขั้นตอนถัดไป
+                        <button class="btn waves-effect waves-light" type="submit" name="action">ถัดไป
                             <i class="material-icons right">send</i>
                         </button>
                     </div>

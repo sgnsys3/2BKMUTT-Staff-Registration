@@ -16,3 +16,4 @@ Auth::routes();
 Route::get('/', 'HomeController@index');
 Route::get('/regis/step1', 'StaffRegisterController@step1');
 Route::get('/regis/step2', 'StaffRegisterController@step2');
+Route::get('/regis/step3', 'StaffRegisterController@step3');

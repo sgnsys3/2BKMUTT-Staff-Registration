@@ -13,4 +13,8 @@ class StaffRegisterController extends Controller
     public function step2() {
         return view('staffregis.step2');
     }
+
+    public function step3() {
+        return view('staffregis.step3');
+    }
 }
