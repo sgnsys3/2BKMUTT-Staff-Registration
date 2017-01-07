@@ -59,7 +59,7 @@
                 <div class="row">
                     <div class="col s12 center-align">
                         <button class="btn waves-effect waves-light" type="submit" name="action">ขั้นตอนถัดไป
-                            <i class="material-icons right">fast_forward</i>
+                            <i class="material-icons right">send</i>
                         </button>
                     </div>
                 </div>
