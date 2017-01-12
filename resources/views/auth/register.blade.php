@@ -62,7 +62,13 @@
                     <div class="col l12 m12 s12">
                         <blockquote class="valign">
                             <p>ตั้งรหัสเพื่อใช้ในการเข้าสู่ระบบ ในการแก้ไขคำถาม และกรอกข้อมูลเพิ่มเติมในภายหลัง</p>
-                            <p>รหัสผ่าน 8 หลักขึ้นไป</p>
+                            <p>รหัสผ่าน 6 หลักขึ้นไป</p>
+                            @if ($errors->has('email'))
+                                <p class="red-text">ชื่อผู้ใช้งานถูกใช้งานแล้ว</p>
+                            @endif
+                            @if ($errors->has('password'))
+                                <p class="red-text">รหัสผ่านไม่ถึง 6 หลัก</p>
+                            @endif
                         </blockquote>
                     </div>
                     <div class="col l12 m12 s12">

@@ -7,6 +7,9 @@
         <h5 class="center-align">"ส่งต่อความสุข ที่ไม่มีวันสิ้นสุด"</h5>
         <h6 class="center-align">2B-KMUTT : Staff</h6>
       </div>
+      <div class="center-align">
+        <br>
+      </div>
     </div>
   </div>
 @endsection

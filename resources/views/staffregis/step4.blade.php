@@ -64,10 +64,10 @@
             </div>
             <div class="row">
                 <div class="col s6 left-align">
-                    <div class="waves-effect waves-green btn grey">
+                    <a href="/logout" class="waves-effect waves-light btn grey">
                         <i class="material-icons left">lock_outline</i>
                         ออกจากระบบ
-                    </div>
+                    </a>
                 </div>
                 <div class="col s6 right-align">
                     <div class="waves-effect waves-green btn green accent-4">
@@ -89,24 +89,24 @@
                 <div class="input-field col s12 m3">
                     <select name="education_grade" id="education_grade" class="modalSelect" required>
                         <option value="">ระดับการศึกษา</option>
-                        <option value="1">ม.6</option>
-                        <option value="2">ปวช.3</option>
+                        <option @if($currentData->education_grade == 1) selected @endif value="1">ม.6</option>
+                        <option @if($currentData->education_grade == 2) selected @endif value="2">ปวช.3</option>
                     </select>
                 </div>
                 <div class="input-field col s12 m6">
-                    <input name="education_plan" id="education_plan" type="text" class="validate">
+                    <input name="education_plan" id="education_plan" type="text" class="validate" value="{{ $currentData->education_plan }}">
                     <label for="education_plan">แผนการเรียน</label>
                 </div>
                 <div class="input-field col s12 m3">
-                    <input name="grade" id="grade" type="number" max="4" min="0" step="0.01" class="validate">
+                    <input name="grade" id="grade" type="number" max="4" min="0" step="0.01" class="validate" value="{{ $currentData->grade }}">
                     <label for="grade">เกรดเฉลี่ย</label>
                 </div>
                 <div class="input-field col s12 m6">
-                    <input name="school" id="school" type="text" class="validate">
+                    <input name="school" id="school" type="text" class="validate" value="{{ $currentData->school }}">
                     <label for="school">โรงเรียน</label>
                 </div>
                 <div class="input-field col s12 m6">
-                    <input name="province" id="province" type="text" class="validate" required>
+                    <input name="province" id="province" type="text" class="validate" required value="{{ $currentData->school_province }}">
                     <label for="province">จังหวัด</label>
                 </div>
             </div>
@@ -129,35 +129,35 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="row">
                 <div class="input-field col s4 m2">
-                    <input name="address" id="address" type="text" class="validate">
+                    <input name="address" id="address" type="text" class="validate" required value="{{ $currentData->homeaddress }}">
                     <label for="address">บ้านเลขที่</label>
                 </div>
                 <div class="input-field col s8 m4">
-                    <input name="mooban" id="moobaan" type="text" class="validate">
+                    <input name="mooban" id="moobaan" type="text" class="validate" value="{{ $currentData->mooban }}">
                     <label for="moobaan">หมู่บ้าน</label>
                 </div>
                 <div class="input-field col s12 m6">
-                    <input name="soi" id="soi" type="text" class="validate">
+                    <input name="soi" id="soi" type="text" class="validate" value="{{ $currentData->soi }}">
                     <label for="soi">ซอย</label>
                 </div>
                 <div class="input-field col s12 m6">
-                    <input name="street" id="street" type="text" class="validate" required>
+                    <input name="street" id="street" type="text" class="validate" required value="{{ $currentData->street }}">
                     <label for="street">ถนน</label>
                 </div>
                 <div class="input-field col s12 m6">
-                    <input name="district" id="district" type="text" class="validate">
+                    <input name="district" id="district" type="text" class="validate" required value="{{ $currentData->district }}">
                     <label for="district">แขวง</label>
                 </div>
                 <div class="input-field col s12 m5">
-                    <input name="area" id="area" type="text" class="validate">
+                    <input name="area" id="area" type="text" class="validate" value="{{ $currentData->area }}" required>
                     <label for="area">เขต</label>
                 </div>
                 <div class="input-field col s12 m5">
-                    <input name="province" id="province" type="text" class="validate">
+                    <input name="province" id="province" type="text" class="validate" value="{{ $currentData->province }}" required>
                     <label for="province">จังหวัด</label>
                 </div>
                 <div class="input-field col s12 m2">
-                    <input name="postcode" id="postcode" type="text" class="validate" required>
+                    <input name="postcode" id="postcode" type="text" class="validate" required value="{{ $currentData->postcode }}">
                     <label for="postcode">รหัสไปรษณีย์</label>
                 </div>
             </div>
@@ -180,43 +180,43 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="row">
                 <div class="input-field col s12 m5">
-                    <input name="dadname" id="dadname" type="text" class="validate">
+                    <input name="dadname" id="dadname" type="text" class="validate" value="{{ $currentData->dad_name }}">
                     <label for="dadname">ชื่อบิดา</label>
                 </div>
                 <div class="input-field col s12 m5">
-                    <input name="dadlastname" id="dadlastname" type="text" class="validate">
+                    <input name="dadlastname" id="dadlastname" type="text" class="validate" value="{{ $currentData->dad_lastname }}">
                     <label for="dadlastname">นามสกุล</label>
                 </div>
                 <div class="input-field col s12 m2">
-                    <input name="dadtelephone" id="dadtelephone" type="text" class="validate">
+                    <input name="dadtelephone" id="dadtelephone" type="text" class="validate" value="{{ $currentData->dad_telephone }}">
                     <label for="dadtelephone">เบอร์โทรศัพท์</label>
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s12 m5">
-                    <input name="momname" id="momname" type="text" class="validate">
+                <div class="input-field col s12 m5"> 
+                    <input name="momname" id="momname" type="text" class="validate" value="{{ $currentData->mom_name }}">
                     <label for="momname">ชื่อมารดา</label>
                 </div>
                 <div class="input-field col s12 m5">
-                    <input name="momlastname" id="momlastname" type="text" class="validate">
+                    <input name="momlastname" id="momlastname" type="text" class="validate" value="{{ $currentData->mom_lastname }}">
                     <label for="momlastname">นามสกุล</label>
                 </div>
                 <div class="input-field col s12 m2">
-                    <input name="momtelephone" id="momtelephone" type="text" class="validate">
+                    <input name="momtelephone" id="momtelephone" type="text" class="validate" value="{{ $currentData->mom_telephone }}">
                     <label for="momtelephone">เบอร์โทรศัพท์</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 m5">
-                    <input name="parentname" id="parentname" type="text" class="validate">
+                    <input name="parentname" id="parentname" type="text" class="validate" value="{{ $currentData->parent_name }}">
                     <label for="parentname">ชื่อผู้ปกครอง</label>
                 </div>
                 <div class="input-field col s12 m5">
-                    <input name="parentlastname" id="parentlastname" type="text" class="validate">
+                    <input name="parentlastname" id="parentlastname" type="text" class="validate" value="{{ $currentData->parent_lastname }}">
                     <label for="parentlastname">นามสกุล</label>
                 </div>
                 <div class="input-field col s12 m2">
-                    <input name="parenttelephone" id="parenttelephone" type="text" class="validate">
+                    <input name="parenttelephone" id="parenttelephone" type="text" class="validate"value="{{ $currentData->parent_telephone }}">
                     <label for="parenttelephone">เบอร์โทรศัพท์</label>
                 </div>
             </div>
@@ -235,34 +235,34 @@
 <div id="2binfo" class="modal">
     <div class="modal-content">
         <h4 class="red-text text-accent-1">ข้อมูลโครงการ 2B-KMUTT</h4>
-        <form data-url="/api/schoolinfo" class="preventForm" id="schoolinfoForm">
+        <form data-url="/api/2binfo" class="preventForm" id="schoolinfoForm">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="row">
                 <div class="input-field col s12 m5 l4">
-                    <input name="2bgen" id="2bgen" type="number" class="validate" placeholder="13 หรือ 12" max="13" min="12">
+                    <input name="2bgen" id="2bgen" type="number" class="validate" placeholder="13 หรือ 12" max="13" min="12" value="{{ $currentData->a2bgen }}" required>
                     <label for="2bgen">นักเรียนโครงการ 2B-KMUTT รุ่นที่</label>
                 </div>
                 <div class="input-field col s12 m7 l8">
-                    <input name="researchgroup" id="researchgroup" type="text" class="validate">
+                    <input name="researchgroup" id="researchgroup" type="text" class="validate" required value="{{ $currentData->a2b_researchgroup }}">
                     <label for="researchgroup">กลุ่มวิจัย</label>
                 </div>
                 <div class="input-field col s12 m6">
-                    <input name="facility" id="facility" type="text" class="validate">
+                    <input name="facility" id="facility" type="text" class="validate" value="{{ $currentData->a2b_department }}" required>
                     <label for="facility">คณะ / หน่วยงาน</label>
                 </div>
                 <div class="input-field col s12 m6">
-                    <input name="department" id="department" type="text" class="validate">
+                    <input name="department" id="department" type="text" class="validate" value="{{ $currentData->a2b_facility }}" required>
                     <label for="department">ภาควิชา</label>
                 </div>
             </div>
             <h6 class="red-text text-accent-1">เข้าศึกษาต่อ มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี ที่</h6>
             <div class="row">
                 <div class="input-field col s12 m6">
-                    <input name="facilityentrance" id="facilityentrance" type="text" class="validate">
+                    <input name="facilityentrance" id="facilityentrance" type="text" class="validate" value="{{ $currentData->entrance_facility }}" required>
                     <label for="facilityentrance">คณะ / หน่วยงาน</label>
                 </div>
                 <div class="input-field col s12 m6">
-                    <input name="departmententrance" id="departmententrance" type="text" class="validate">
+                    <input name="departmententrance" id="departmententrance" type="text" class="validate" value="{{ $currentData->entrance_department }}" required>
                     <label for="departmententrance">ภาควิชา</label>
                 </div>
             </div>

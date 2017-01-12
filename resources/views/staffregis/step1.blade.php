@@ -26,11 +26,19 @@
             </blockquote>
             <p>หมายเหตุ : เพื่อเตรียมความพร้อมสำหรับการเปิดโครงการ 2B-KMUTT ครั้งที่ 14 ในวันที่ 11 มีนาคม 2560<br>
             ทางมหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี ได้จัดที่พักระหว่างวันที่ 8 – 10 มีนาคม 2560 ให้กับพี่เลี้ยงโครงการทุกท่าน </p>
-            <center><p class="red-text"><b><u>พี่เลี้ยงที่ทำผิดกฎของค่าย และพิสูจน์ได้ว่าผิดจริงจะต้องออกจากการเป็นพี่เลี้ยงทันที</u></b></p>
-            <div class="btn waves-effect waves-light" onClick="checkAccept(document.getElementsByName('csrf-token')[0].content)">ยอมรับข้อตกลง
-                <i class="material-icons right">send</i>
+            <p class="red-text center-align"><b><u>พี่เลี้ยงที่ทำผิดกฎของค่าย และพิสูจน์ได้ว่าผิดจริงจะต้องออกจากการเป็นพี่เลี้ยงทันที</u></b></p>
+            <div class="row">
+                <div class="col m6 s12 center-align">
+                    <a href="/regis/step4" class="btn waves-effect waves-light orange darken-4">ผู้มีรหัสผ่านแล้ว
+                        <i class="material-icons left">vpn_key</i>
+                    </a>
+                </div>
+                <div class="col m6 s12 center-align">
+                    <div class="btn waves-effect waves-light" onClick="checkAccept(document.getElementsByName('csrf-token')[0].content)">ยอมรับข้อตกลง
+                        <i class="material-icons right">send</i>
+                    </div>
+                </div>
             </div>
-            </center><br>
         </div>
     </div>
 </div>

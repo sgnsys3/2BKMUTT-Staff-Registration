@@ -34,13 +34,14 @@ class CreateUserProfiles extends Migration
             $table->string('school_province')->nullable();
             $table->float('grade')->nullable();
 
-            $table->string('2bgen')->nullable();
-            $table->string('2b_researchgroup')->nullable();
-            $table->string('2b_department')->nullable();
-            $table->string('2b_facility')->nullable();
+            $table->string('a2bgen')->nullable();
+            $table->string('a2b_researchgroup')->nullable();
+            $table->string('a2b_department')->nullable();
+            $table->string('a2b_facility')->nullable();
             $table->string('entrance_facility')->nullable();
             $table->string('entrance_department')->nullable();
 
+            $table->string('homeaddress')->nullable();
             $table->string('mooban')->nullable();
             $table->string('soi')->nullable();
             $table->string('street')->nullable();

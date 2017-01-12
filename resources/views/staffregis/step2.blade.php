@@ -1,12 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-@if(isset($errors))
-    <?php var_dump($errors) ?>
-    @foreach ($errors->all() as $error)
-        {{ $error }}
-    @endforeach
-@endif
+
 <div class="container">
     <h1 class="header">2B-STAFF</h1>
     <div class="collection">
@@ -75,11 +70,11 @@
                             <label for="username">ชื่อผู้ใช้</label>
                         </div>
                         <div class="input-field col s12">
-                            <input name="password" id="password" type="password" class="validate" required>
+                            <input name="password" id="password" type="password" class="validate" min="8" required>
                             <label for="password">รหัสผ่าน</label>
                         </div>
                         <div class="input-field col s12">
-                            <input name="password_confirmation" id="password_confirmation" type="password" class="validate" required>
+                            <input name="password_confirmation" id="password_confirmation" min="8" type="password" class="validate" required>
                             <label for="password_confirmation">ยืนยันรหัสผ่าน</label>
                         </div>
                     </div>

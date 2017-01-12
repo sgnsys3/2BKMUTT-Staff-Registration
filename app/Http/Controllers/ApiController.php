@@ -78,4 +78,25 @@ class ApiController extends Controller
         $parentInfo->save();
         return 'OK';
     }
+
+    public function a2binfo(Request $request) {
+        if (!Auth::check()) return response('ERROR', 403);
+        $this->validate($request, [
+            '2bgen' => 'required|integer|max:13|min:10',
+            'researchgroup' => 'required|string',
+            'facility' => 'required|string',
+            'department' => 'required|string',
+            'facilityentrance' => 'required|string',
+            'departmententrance' => 'required|string'
+        ]);
+        $a2b = UserProfile::firstOrNew(['user_id' => Auth::id()]);
+        $a2b->a2bgen = $request->input('2bgen');
+        $a2b->a2b_researchgroup = $request->input('researchgroup');
+        $a2b->a2b_department = $request->input('facility');
+        $a2b->a2b_facility = $request->input('department');
+        $a2b->entrance_facility = $request->input('facilityentrance');
+        $a2b->entrance_department = $request->input('departmententrance');
+        $a2b->save();
+        return 'OK';
+    }
 }
