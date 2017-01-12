@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\UserProfile;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -27,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/regis/step4';
 
     /**
      * Create a new controller instance.
@@ -49,7 +50,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'email' => 'required|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
     }
@@ -62,10 +63,38 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        Validator::make($data, [
+            'name' => 'required|string',
+            'lastname' => 'required|string',
+            'dob' => 'required|date',
+            'gender' => 'required|integer',
+            'religion' => 'required|string',
+            'disase' => 'string',
+            'allergies' => 'string',
+            'drug' => 'string',
+            'telephone' => 'required|digits_between:9,10',
+            'emailUser' => 'required|email'
+        ]);
+        $temp = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+        $userData = UserProfile::firstOrNew([
+            'user_id' => $temp->id
+        ]);
+        $userData->name = $data['name'];
+        $userData->lastname = $data['lastname'];
+        $userData->dob = $data['dob'];
+        $userData->telephone = $data['telephone'];
+        $userData->user_id = $temp->id;
+        $userData->gender = $data['gender'];
+        $userData->religion = $data['religion'];
+        $userData->disase = $data['disase'];
+        $userData->allergies = $data['allergies'];
+        $userData->drug = $data['drug'];
+        $userData->email = $data['emailUser'];
+        $userData->save();
+        return $temp;
     }
 }

@@ -13,12 +13,19 @@ class StaffRegisterController extends Controller
     public function step2() {
         return view('staffregis.step2');
     }
-
-    public function step3() {
-        return view('staffregis.step3');
-    }
-
-    public function step4() {
-        return view('staffregis.step4');
+    
+    public function postStep2(Request $request){
+        $this->validate($request, [
+            'name' => 'required|string',
+            'lastname' => 'required|string',
+            'dob' => 'required|date',
+            'gender' => 'required|integer',
+            'religion' => 'required|string',
+            'disase' => 'string',
+            'allergies' => 'string',
+            'drug' => 'string',
+            'telephone' => 'required|digits_between:9,10',
+            'email' => 'required|email'
+        ]);
     }
 }

@@ -1,4 +1,8 @@
-function checkAccept () {
+function redirectWithPost(url,name,value,token) {
+    $.redirect(url, {name: value,'_token': token});
+}
+
+function checkAccept (token) {
     swal({
             title: "แน่ใจหรือไม่ ?",
             text: "เข้ามาแล้ว ต้องทำตามให้ได้นะ",
@@ -10,7 +14,19 @@ function checkAccept () {
             closeOnConfirm: true
         },
         function () {
-            window.alert("OK")
+            window.location = '/register';
         }
     );
 }
+
+$('.preventForm').submit(function(e) {
+    e.preventDefault()
+    const tempThis = this
+    $.post($(this).data('url'), $(this).serialize())
+    .done(function (data) {
+        $(tempThis).modal('close')
+    })
+    .fail(function (data) {
+        console.log(data)
+    })
+})
