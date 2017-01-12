@@ -20,6 +20,7 @@
     <script src="/js/jquery-3.1.1.min.js"></script>
     <script src="/js/materialize.min.js"></script>
     <script src="/js/sweetalert.min.js"></script>
+    <script src="/js/jqueryRedir.js"></script>
     <script src="/js/2bstaff.js"></script>
     @yield('extendScript')
   </body>

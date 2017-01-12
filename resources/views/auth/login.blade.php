@@ -2,67 +2,55 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+    <h1 class="header">2B-STAFF</h1>
+    <div class="collection">
+        <div class="collection-item">
+            <h5 class="red-text text-accent-1">เข้าสู่ระบบ</h5>
+            <form method="post" action="{{ url('/login') }}">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <div class="row">
+                    <div class="col l12 m12 s12">
+                        <blockquote class="valign">
+                            <p>กรอกชื่อผู้ใช้งาน และรหัสผ่าน เพื่อเข้าสู่ระบบสมัครต่อไป</p>
+                            @if ($errors->has('email'))
+                                <p class="red-text">ข้อมูลไม่ถูกต้อง</p>
+                            @endif
+                        </blockquote>
+                    </div>
+                    <div class="col l12 m12 s12">
+                        <div class="input-field col s12">
+                            <input name="email" id="username" type="text" class="validate" required>
+                            <label for="username">ชื่อผู้ใช้</label>
                         </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                        <div class="input-field col s12">
+                            <input name="password" id="password" type="password" class="validate" required>
+                            <label for="password">รหัสผ่าน</label>
                         </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">ถัดไป
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 @endsection
+
+@section('extendScript')
+<script>
+    $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 40, // Creates a dropdown of 15 years to control year
+        format: 'yyyy-mm-dd'
+    });
+    $(document).ready(function() {
+        $('select').material_select();
+    });
+</script>
+@endsection
+
