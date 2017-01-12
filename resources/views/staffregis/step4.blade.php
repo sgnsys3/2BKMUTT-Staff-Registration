@@ -14,7 +14,7 @@
             </blockquote>
             <div class="row">
                 <a class="col s12 m6 l4" href="#schoolinfo">
-                    <div class="card red accent-2">
+                    <div class="card red accent-2" id="schoolInfoCard">
                         <div class="card-content white-text center-align">
                             <i class="material-icons medium">assignment_ind</i>
                             <p>ข้อมูลสถานศึกษา</p>
@@ -22,7 +22,7 @@
                     </div>
                 </a>
                 <a class="col s12 m6 l4" href="#homeinfo">
-                    <div class="card green accent-4">
+                    <div class="card red accent-2" id="homeInfoCard">
                         <div class="card-content white-text center-align">
                             <i class="material-icons medium">location_on</i>
                             <p>ข้อมูลที่อยู่อาศัย</p>
@@ -30,7 +30,7 @@
                     </div>
                 </a>
                 <a class="col s12 m6 l4" href="#parentinfo">
-                    <div class="card red accent-2">
+                    <div class="card red accent-2" id="parentInfoCard">
                         <div class="card-content white-text center-align">
                             <i class="material-icons medium">contacts</i>
                             <p>ข้อมูลผู้ปกครอง</p>
@@ -38,7 +38,7 @@
                     </div>
                 </a>
                 <a class="col s12 m6 l4" href="#2binfo">
-                    <div class="card green accent-4">
+                    <div class="card red accent-2" id="a2bInfoCard">
                         <div class="card-content white-text center-align">
                             <i class="material-icons medium">info</i>
                             <p>ข้อมูลโครงการ 2B-KMUTT</p>
@@ -46,7 +46,7 @@
                     </div>
                 </a>
                 <a class="col s12 m6 l4" href="#uploadDocument">
-                    <div class="card red accent-2">
+                    <div class="card red accent-2" id="uploadDocCard">
                         <div class="card-content white-text center-align">
                             <i class="material-icons medium">done_all</i>
                             <p>เอกสารขออนุญาติผู้ปกครอง</p>
@@ -54,7 +54,7 @@
                     </div>
                 </a>
                 <a class="col s12 m6 l4" href="quiz">
-                    <div class="card green accent-4">
+                    <div class="card red accent-2" id="answerCard">
                         <div class="card-content white-text center-align">
                             <i class="material-icons medium">question_answer</i>
                             <p>คำถามเข้าค่าย อิอิ ~</p>
@@ -83,7 +83,7 @@
 <div id="schoolinfo" class="modal">
     <div class="modal-content">
         <h4 class="red-text text-accent-1">ข้อมูลสถานศึกษา</h4>
-        <form data-url="/api/schoolinfo" class="preventForm" id="schoolinfoForm">
+        <form data-mode="1" data-url="/api/schoolinfo" class="preventForm" id="schoolinfoForm">
             <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}"></input>
             <div class="row">
                 <div class="input-field col s12 m3">
@@ -125,7 +125,7 @@
 <div id="homeinfo" class="modal">
     <div class="modal-content">
         <h4 class="red-text text-accent-1">ข้อมูลที่อยู่อาศัย</h4>
-        <form data-url="/api/homeinfo" class="preventForm" id="schoolinfoForm">
+        <form data-mode="2" data-url="/api/homeinfo" class="preventForm" id="schoolinfoForm">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="row">
                 <div class="input-field col s4 m2">
@@ -176,7 +176,7 @@
 <div id="parentinfo" class="modal">
     <div class="modal-content">
         <h4 class="red-text text-accent-1">ข้อมูลผู้ปกครอง</h4>
-        <form data-url="/api/parentinfo" class="preventForm" id="schoolinfoForm">
+        <form data-mode="3" data-url="/api/parentinfo" class="preventForm" id="schoolinfoForm">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="row">
                 <div class="input-field col s12 m5">
@@ -235,7 +235,7 @@
 <div id="2binfo" class="modal">
     <div class="modal-content">
         <h4 class="red-text text-accent-1">ข้อมูลโครงการ 2B-KMUTT</h4>
-        <form data-url="/api/2binfo" class="preventForm" id="schoolinfoForm">
+        <form data-mode="4" data-url="/api/2binfo" class="preventForm" id="schoolinfoForm">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="row">
                 <div class="input-field col s12 m5 l4">
@@ -310,9 +310,13 @@
     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
     $('.modal').modal({
         ready: function (modal, trigger) {
-            $('select.modalSelect').material_select();
+            $('select.modalSelect').material_select()
         }
-    });
-  });
+    })
+    changeClassComplete ('#schoolInfoCard',1)
+    changeClassComplete ('#homeInfoCard',2)
+    changeClassComplete ('#parentInfoCard',3)
+    changeClassComplete ('#a2bInfoCard',4)
+  })
 </script>
 @endsection

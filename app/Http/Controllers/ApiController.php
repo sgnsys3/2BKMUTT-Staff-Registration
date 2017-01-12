@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Storage;
 use App\UserProfile;
+use App\UserAnswer;
 
 class ApiController extends Controller
 {
@@ -98,5 +100,31 @@ class ApiController extends Controller
         $a2b->entrance_department = $request->input('departmententrance');
         $a2b->save();
         return 'OK';
+    }
+
+    public function isComplete(Request $request) {
+        if (!Auth::check()) return response('ERROR', 403);
+        $this->validate($request, [
+            'mode' => 'required|integer|min:1|max:6'
+        ]);
+        $userprofile = UserProfile::where('user_id',Auth::id())->first();
+        if($request->input('mode') == 1) {
+            return ($userprofile->education_plan != NULL || $userprofile->education_grade != NULL || $userprofile->grade != NULL || $userprofile->school != NULL || $userprofile->school_province != NULL) ? response()->json(['status' => true]) : response()->json(['status' => false]);
+        }
+        else if($request->input('mode') == 2) {
+            return ($userprofile->homeaddress != NULL || $userprofile->mooban != NULL || $userprofile->soi != NULL || $userprofile->street != NULL || $userprofile->district != NULL || $userprofile->area != NULL || $userprofile->province != NULL || $userprofile->postcode != NULL) ? response()->json(['status' => true]) : '0';
+        }
+        else if($request->input('mode') == 3) {
+            return ($userprofile->dad_name != NULL || $userprofile->dad_lastname != NULL || $userprofile->dad_telephone != NULL || $userprofile->mom_name != NULL || $userprofile->mom_lastname != NULL || $userprofile->mom_telephone != NULL || $userprofile->parent_name != NULL || $userprofile->parent_lastname != NULL || $userprofile->parent_telephone != NULL) ? response()->json(['status' => true]) : '0';
+        }
+        else if($request->input('mode') == 4) {
+            return ($userprofile->a2bgen != NULL || $userprofile->dad_laa2b_researchgroupstname != NULL || $userprofile->a2b_department != NULL || $userprofile->a2b_facility != NULL || $userprofile->entrance_facility != NULL || $userprofile->entrance_department != NULL) ? response()->json(['status' => true]) : '0';
+        }
+        else if($request->input('mode') == 5) {
+            return ($userprofile->approve_filename != NULL) ? response()->json(['status' => true]) : '0';
+        }
+        else if($request->input('mode') == 6) {
+            
+        }
     }
 }

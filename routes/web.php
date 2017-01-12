@@ -25,3 +25,4 @@ Route::post('/api/schoolinfo', 'ApiController@schoolInfo');
 Route::post('/api/homeinfo', 'ApiController@homeInfo');
 Route::post('/api/parentinfo', 'ApiController@parentInfo');
 Route::post('/api/2binfo', 'ApiController@a2bInfo');
+Route::post('/api/iscomplete', 'ApiController@isComplete');

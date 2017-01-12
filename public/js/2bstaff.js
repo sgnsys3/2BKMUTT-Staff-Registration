@@ -25,8 +25,32 @@ $('.preventForm').submit(function(e) {
     $.post($(this).data('url'), $(this).serialize())
     .done(function (data) {
         $(tempThis).modal('close')
+        if($(tempThis).data('mode') == 1) changeClassComplete ('#schoolInfoCard',1)
+        else if($(tempThis).data('mode') == 2) changeClassComplete ('#homeInfoCard',2)
+        else if($(tempThis).data('mode') == 3) changeClassComplete ('#parentInfoCard',3)
+        else if($(tempThis).data('mode') == 4) changeClassComplete ('#a2bInfoCard',4)
     })
     .fail(function (data) {
         console.log(data)
     })
 })
+
+function changeClassComplete (id,mode) {
+    $.post('/api/iscomplete', {
+        '_token': $("meta[name='csrf-token']").attr('content'),
+        'mode': mode
+    })
+    .done(function (data) {
+        if (data.status)
+        {
+            $(id).removeClass('red accent-2') 
+            $(id).addClass('green accent-4') 
+        } else { 
+            $(id).addClass('red accent-2')
+            $(id).removeClass('green accent-4') 
+        }
+    })
+    .fail(function () {
+
+    })
+}
