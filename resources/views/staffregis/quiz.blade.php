@@ -328,7 +328,7 @@
 <div id="q10" class="modal">
     <div class="modal-content">
         <h4 class="red-text text-accent-1">คำถามข้อที่ 10</h4>
-        <blockquote>ให้น้องบรรยายสิ่งที่คิดว่าแสดงความเป็นตัวตนของน้องได้มากที่สุด (อย่างน้อย 5 บรรทัด)</blockquote>
+        <blockquote>ให้น้องบรรยายสิ่งที่คิดว่าแสดงความเป็นตัวตนของน้องได้มากที่สุด (อย่างน้อย 9 ข้อ)</blockquote>
         <form action="" class="answerQuiz" data-url="/api/answer" data-answernum="10">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <input type="hidden" name="answer_number" value="10">
