@@ -197,6 +197,10 @@ class ApiController extends Controller
     }
 
     public function uploadDoc(Request $request) {
-        
+        return $request->input();
+        $this->validate($request, [
+            'uploaddoc' => 'file|required'
+        ]);
+        return 'OK';
     }
 }

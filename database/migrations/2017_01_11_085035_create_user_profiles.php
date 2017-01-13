@@ -27,6 +27,7 @@ class CreateUserProfiles extends Migration
             $table->string('drug');
             $table->string('telephone');
             $table->string('email');
+            $table->string('facebook')->nullable();
 
             $table->string('education_grade')->nullable();
             $table->string('education_plan')->nullable();
@@ -63,6 +64,7 @@ class CreateUserProfiles extends Migration
             $table->string('parent_telephone')->nullable();
 
             $table->string('approve_filename')->nullable();
+            $table->string('image_filename')->nullable();
 
             $table->tinyInteger('status')->nullable();
             $table->tinyInteger('ispass')->nullable();

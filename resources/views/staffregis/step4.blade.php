@@ -284,25 +284,28 @@
         <blockquote>
             <p>ให้น้องแสกนเอกสาร และอัพโหลดในสกุลไฟล์ .pdf</p>
         </blockquote>
-        <div class="row">
-            <div class="file-field input-field">
-                <div class="btn">
-                    <span>Select</span>
-                    <input type="file" accept=".pdf">
-                </div>
-                <div class="file-path-wrapper">
-                    <input class="file-path validate" type="text">
+        <form data-mode="5" data-url="/api/docinfo" class="preventForm" id="docinfoForm" enctype="multipart/form-data">
+            <div class="row">
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>Select</span>
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="file" accept=".pdf" name="uploaddoc">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col s12 right-align">
-                <a href="#!" class="modal-action modal-close waves-effect waves-green btn green accent-4">
-                    <i class="material-icons right">send</i>
-                    ส่งข้อมูล
-                </a>
+            <div class="row">
+                <div class="col s12 right-align">
+                    <button class="waves-effect waves-green btn green accent-4">
+                        <i class="material-icons right">send</i>
+                        ส่งข้อมูล
+                    </button>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 @endsection
