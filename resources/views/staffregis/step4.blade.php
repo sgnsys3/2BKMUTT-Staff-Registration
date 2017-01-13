@@ -7,7 +7,7 @@
         <div class="collection-item">
             <h5 class="red-text text-accent-1 header">กรอกข้อมูลเพิ่มเติม !</h5>
             <blockquote>
-                <p>สวัสดีน้อง .... เรามาเพิ่มเติมส่วนที่หายไปกันเถอะ !</p>
+                <p>สวัสดีน้อง {{ $currentData->name }} {{ $currentData->lastname }} เรามาเพิ่มเติมส่วนที่หายไปกันเถอะ !</p>
                 <p>น้องสามารถเลือกทำส่วนใดก่อนก็ได้</p>
                 <p>หัวข้อที่ยังไม่สมบูรณ์จะเป็นสีแดง หัวข้อที่เสร็จสมบูรณ์แล้วจะเป็นสีเขียว</p>
                 <p>เมื่อน้องกรอกข้อมูลครบทุกส่วนแล้ว น้องจะสามารถ ยืนยันการลงทะเบียนได้</p>
@@ -281,11 +281,14 @@
 <div id="uploadDocument" class="modal">
     <div class="modal-content">
         <h4 class="red-text text-accent-1">เอกสารขออนุญาติผู้ปกครอง</h4>
+        <blockquote>
+            <p>ให้น้องแสกนเอกสาร และอัพโหลดในสกุลไฟล์ .pdf</p>
+        </blockquote>
         <div class="row">
             <div class="file-field input-field">
                 <div class="btn">
                     <span>Select</span>
-                    <input type="file" accept=".pdf,.png,.jpg,.jpeg">
+                    <input type="file" accept=".pdf">
                 </div>
                 <div class="file-path-wrapper">
                     <input class="file-path validate" type="text">
@@ -313,10 +316,7 @@
             $('select.modalSelect').material_select()
         }
     })
-    changeClassComplete ('#schoolInfoCard',1)
-    changeClassComplete ('#homeInfoCard',2)
-    changeClassComplete ('#parentInfoCard',3)
-    changeClassComplete ('#a2bInfoCard',4)
+    firstCheck()
   })
 </script>
 @endsection

@@ -63,6 +63,9 @@ class CreateUserProfiles extends Migration
             $table->string('parent_telephone')->nullable();
 
             $table->string('approve_filename')->nullable();
+
+            $table->tinyInteger('status')->nullable();
+            $table->tinyInteger('ispass')->nullable();
             $table->timestamps();
         });
     }

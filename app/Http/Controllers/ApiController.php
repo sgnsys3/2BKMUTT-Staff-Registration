@@ -102,29 +102,101 @@ class ApiController extends Controller
         return 'OK';
     }
 
+    public function answer(Request $request) {
+        if (!Auth::check()) return response('ERROR', 403);
+        $this->validate($request, [
+            'answer_number' => 'required|integer|min:1|max:10',
+            'answer' => 'required|string'
+        ]);
+        $answer = UserAnswer::firstOrNew(['user_id' => Auth::id()]);
+        $varName = "answer" . $request->input('answer_number');
+        $answer->$varName = $request->input('answer');
+        $answer->save();
+        return 'OK';
+    }
+
     public function isComplete(Request $request) {
         if (!Auth::check()) return response('ERROR', 403);
         $this->validate($request, [
-            'mode' => 'required|integer|min:1|max:6'
+            'mode' => 'required|integer|min:1|max:7'
         ]);
         $userprofile = UserProfile::where('user_id',Auth::id())->first();
         if($request->input('mode') == 1) {
-            return ($userprofile->education_plan != NULL || $userprofile->education_grade != NULL || $userprofile->grade != NULL || $userprofile->school != NULL || $userprofile->school_province != NULL) ? response()->json(['status' => true]) : response()->json(['status' => false]);
+            return ($userprofile->education_plan != NULL && $userprofile->education_grade != NULL && $userprofile->grade != NULL && $userprofile->school != NULL && $userprofile->school_province != NULL) ? response()->json(['status' => true]) : response()->json(['status' => false]);
         }
         else if($request->input('mode') == 2) {
-            return ($userprofile->homeaddress != NULL || $userprofile->mooban != NULL || $userprofile->soi != NULL || $userprofile->street != NULL || $userprofile->district != NULL || $userprofile->area != NULL || $userprofile->province != NULL || $userprofile->postcode != NULL) ? response()->json(['status' => true]) : '0';
+            return ($userprofile->homeaddress != NULL && $userprofile->street != NULL && $userprofile->district != NULL && $userprofile->area != NULL && $userprofile->province != NULL && $userprofile->postcode != NULL) ? response()->json(['status' => true]) : response()->json(['status' => false]);
         }
         else if($request->input('mode') == 3) {
-            return ($userprofile->dad_name != NULL || $userprofile->dad_lastname != NULL || $userprofile->dad_telephone != NULL || $userprofile->mom_name != NULL || $userprofile->mom_lastname != NULL || $userprofile->mom_telephone != NULL || $userprofile->parent_name != NULL || $userprofile->parent_lastname != NULL || $userprofile->parent_telephone != NULL) ? response()->json(['status' => true]) : '0';
+            return ($userprofile->parent_name != NULL && $userprofile->parent_lastname != NULL && $userprofile->parent_telephone != NULL) ? response()->json(['status' => true]) : response()->json(['status' => false]);
         }
         else if($request->input('mode') == 4) {
-            return ($userprofile->a2bgen != NULL || $userprofile->dad_laa2b_researchgroupstname != NULL || $userprofile->a2b_department != NULL || $userprofile->a2b_facility != NULL || $userprofile->entrance_facility != NULL || $userprofile->entrance_department != NULL) ? response()->json(['status' => true]) : '0';
+            return ($userprofile->a2bgen != NULL && $userprofile->a2b_researchgroup != NULL && $userprofile->a2b_department != NULL && $userprofile->a2b_facility != NULL && $userprofile->entrance_facility != NULL && $userprofile->entrance_department != NULL) ? response()->json(['status' => true]) : response()->json(['status' => false]);
         }
         else if($request->input('mode') == 5) {
             return ($userprofile->approve_filename != NULL) ? response()->json(['status' => true]) : '0';
         }
         else if($request->input('mode') == 6) {
-            
+            $userAnswer = UserAnswer::where('user_id',Auth::id())->first();
+            return ($userAnswer == NULL) ? response()->json(['status' => false]) : ($userAnswer->answer1 != NULL && $userAnswer->answer2 != NULL && $userAnswer->answer3 != NULL && $userAnswer->answer4 != NULL && $userAnswer->answer5 != NULL && $userAnswer->answer6 != NULL && $userAnswer->answer7 != NULL && $userAnswer->answer8 != NULL && $userAnswer->answer9 != NULL && $userAnswer->answer10 != NULL) ? response()->json(['status' => true]) : response()->json(['status' => false]);
         }
+        else if($request->input('mode') == 7) {
+            $userAnswer = UserAnswer::where('user_id',Auth::id())->first();
+
+            $m6 = ($userAnswer == NULL) ? response()->json(['status' => false]) : ($userAnswer->answer1 != NULL && $userAnswer->answer2 != NULL && $userAnswer->answer3 != NULL && $userAnswer->answer4 != NULL && $userAnswer->answer5 != NULL && $userAnswer->answer6 != NULL && $userAnswer->answer7 != NULL && $userAnswer->answer8 != NULL && $userAnswer->answer9 != NULL && $userAnswer->answer10 != NULL);
+
+            $m5 = ($userprofile->approve_filename != NULL);
+
+            $m4 =($userprofile->a2bgen != NULL && $userprofile->a2b_researchgroup != NULL && $userprofile->a2b_department != NULL && $userprofile->a2b_facility != NULL && $userprofile->entrance_facility != NULL && $userprofile->entrance_department != NULL);
+
+            $m3 = ($userprofile->parent_name != NULL && $userprofile->parent_lastname != NULL && $userprofile->parent_telephone != NULL);
+
+            $m2 = ($userprofile->homeaddress != NULL && $userprofile->street != NULL && $userprofile->district != NULL && $userprofile->area != NULL && $userprofile->province != NULL && $userprofile->postcode != NULL);
+
+            $m1 = ($userprofile->education_plan != NULL && $userprofile->education_grade != NULL && $userprofile->grade != NULL && $userprofile->school != NULL && $userprofile->school_province != NULL);
+
+            return response()->json([
+                'm1' => $m1,
+                'm2' => $m2,
+                'm3' => $m3,
+                'm4' => $m4,
+                'm5' => $m5,
+                'm6' => $m6
+                ]);
+        }
+    }
+
+    public function testAPI(Request $request) {
+        return $request->input();
+    }
+
+    public function answerCheck(Request $request) {
+        if (!Auth::check()) return response('ERROR', 403);
+        $this->validate($request, [
+            'answer_number' => 'required|integer|min:1|max:11',
+        ]);
+        $answer = UserAnswer::where(['user_id' => Auth::id()])->first();
+        if($request->input('answer_number') < 11) {
+            $varName = "answer" . $request->input('answer_number');
+            return response()->json(['status' => ($answer->$varName != NULL)]);
+        }
+        else {
+            return response()->json([
+                'answer1' => ($answer->answer1 != NULL),
+                'answer2' => ($answer->answer2 != NULL),
+                'answer3' => ($answer->answer3 != NULL),
+                'answer4' => ($answer->answer4 != NULL),
+                'answer5' => ($answer->answer5 != NULL),
+                'answer6' => ($answer->answer6 != NULL),
+                'answer7' => ($answer->answer7 != NULL),
+                'answer8' => ($answer->answer8 != NULL),
+                'answer9' => ($answer->answer9 != NULL),
+                'answer10' => ($answer->answer10 != NULL),
+            ]);
+        }
+    }
+
+    public function uploadDoc(Request $request) {
+        
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\UserProfile;
+use App\UserAnswer;
 use Auth;
 
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class Step4RegisterController extends Controller
     }
 
     public function quiz() {
-        return view('staffregis.quiz');
+        return view('staffregis.quiz',['currentData' => UserAnswer::where('user_id',Auth::id())->first()]);
     }
 
     public function logout() {
