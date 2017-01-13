@@ -10,7 +10,7 @@
                 <p>สวัสดีน้อง {{ $currentData->name }} {{ $currentData->lastname }} เรามาเพิ่มเติมส่วนที่หายไปกันเถอะ !</p>
                 <p>น้องสามารถเลือกทำส่วนใดก่อนก็ได้</p>
                 <p>หัวข้อที่ยังไม่สมบูรณ์จะเป็นสีแดง หัวข้อที่เสร็จสมบูรณ์แล้วจะเป็นสีเขียว</p>
-                <p>เมื่อน้องกรอกข้อมูลครบทุกส่วนแล้ว น้องจะสามารถ ยืนยันการลงทะเบียนได้</p>
+                <p>เมื่อน้องกรอกข้อมูลครบทุกส่วนแล้ว ถือว่าเป็นการเสร็จสิ้นการสมัคร (เขียวทุกหัวข้อ)</p>
             </blockquote>
             <div class="row">
                 <a class="col s12 m6 l4" href="#schoolinfo">
@@ -49,7 +49,7 @@
                     <div class="card red accent-2" id="uploadDocCard">
                         <div class="card-content white-text center-align">
                             <i class="material-icons medium">done_all</i>
-                            <p>เอกสารขออนุญาติผู้ปกครอง</p>
+                            <p>ไฟล์เพิ่มเติม</p>
                         </div>
                     </div>
                 </a>
@@ -63,17 +63,11 @@
                 </a>
             </div>
             <div class="row">
-                <div class="col s6 left-align">
+                <div class="col s12 left-align">
                     <a href="/logout" class="waves-effect waves-light btn grey">
                         <i class="material-icons left">lock_outline</i>
                         ออกจากระบบ
                     </a>
-                </div>
-                <div class="col s6 right-align">
-                    <div class="waves-effect waves-green btn green accent-4">
-                        <i class="material-icons right">send</i>
-                        ยืนยันการลงทะเบียน
-                    </div>
                 </div>
             </div>
         </div>
@@ -284,16 +278,30 @@
         <blockquote>
             <p>ให้น้องแสกนเอกสาร และอัพโหลดในสกุลไฟล์ .pdf</p>
         </blockquote>
-        <form data-mode="5" data-url="/api/docinfo" class="preventForm" id="docinfoForm" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="file-field input-field">
                     <div class="btn">
                         <span>Select</span>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="file" accept=".pdf" name="uploaddoc">
+                        <input type="file" accept=".pdf" name="uploaddoc" required>
                     </div>
                     <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text">
+                        <input class="file-path validate" type="text" placeholder="เอกสารขออนุญาติผู้ปกครอง">
+                    </div>
+                </div>
+            </div>
+            <blockquote>
+                <p>อัพโหลดรูปถ่าย 1 รูป</p>
+            </blockquote>
+            <div class="row">
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>Select</span>
+                        <input type="file" accept="image/*" name="picture" required>
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" placeholder="รูปภาพ">
                     </div>
                 </div>
             </div>

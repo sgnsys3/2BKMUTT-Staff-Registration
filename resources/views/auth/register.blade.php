@@ -6,7 +6,14 @@
     <div class="collection">
         <div class="collection-item">
             <h5 class="red-text text-accent-1">ข้อมูลส่วนตัว</h5>
-            <form method="post">
+            @if (count($errors) > 0)
+                <blockquote>
+                    @foreach ($errors->all() as $error)
+                        <p class="red-text">{{ $error }}</p>
+                    @endforeach
+                </blockquote>
+            @endif
+            <form method="post" id="recheck">
                 <div class="row">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="input-field col s12 m5">
@@ -53,7 +60,7 @@
                         <label for="telephone">เบอร์โทรศัพท์มือถือ</label>
                     </div>
                     <div class="input-field col s12 m6">
-                        <input name="emailUser" id="email" type="email" class="validate" value="{{ old('emailUser') }}" required>
+                        <input name="email" id="email" type="email" class="validate" value="{{ old('email') }}" required>
                         <label for="email">อีเมลล์</label>
                     </div>
                 </div>
@@ -63,17 +70,11 @@
                         <blockquote class="valign">
                             <p>ตั้งรหัสเพื่อใช้ในการเข้าสู่ระบบ ในการแก้ไขคำถาม และกรอกข้อมูลเพิ่มเติมในภายหลัง</p>
                             <p>รหัสผ่าน 6 หลักขึ้นไป</p>
-                            @if ($errors->has('email'))
-                                <p class="red-text">ชื่อผู้ใช้งานถูกใช้งานแล้ว</p>
-                            @endif
-                            @if ($errors->has('password'))
-                                <p class="red-text">รหัสผ่านไม่ถึง 6 หลัก</p>
-                            @endif
                         </blockquote>
                     </div>
                     <div class="col l12 m12 s12">
                         <div class="input-field col s12">
-                            <input name="email" id="username" type="text" class="validate" required>
+                            <input name="username" id="username" type="text" class="validate" required value="{{ old('username') }}">
                             <label for="username">ชื่อผู้ใช้</label>
                         </div>
                         <div class="input-field col s12">

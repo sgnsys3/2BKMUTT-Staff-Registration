@@ -134,7 +134,7 @@ class ApiController extends Controller
             return ($userprofile->a2bgen != NULL && $userprofile->a2b_researchgroup != NULL && $userprofile->a2b_department != NULL && $userprofile->a2b_facility != NULL && $userprofile->entrance_facility != NULL && $userprofile->entrance_department != NULL) ? response()->json(['status' => true]) : response()->json(['status' => false]);
         }
         else if($request->input('mode') == 5) {
-            return ($userprofile->approve_filename != NULL) ? response()->json(['status' => true]) : '0';
+            return ($userprofile->approve_filename != NULL && $userprofile->image_filename != NULL) ? response()->json(['status' => true]) : response()->json(['status' => false]);
         }
         else if($request->input('mode') == 6) {
             $userAnswer = UserAnswer::where('user_id',Auth::id())->first();
@@ -145,7 +145,7 @@ class ApiController extends Controller
 
             $m6 = ($userAnswer == NULL) ? response()->json(['status' => false]) : ($userAnswer->answer1 != NULL && $userAnswer->answer2 != NULL && $userAnswer->answer3 != NULL && $userAnswer->answer4 != NULL && $userAnswer->answer5 != NULL && $userAnswer->answer6 != NULL && $userAnswer->answer7 != NULL && $userAnswer->answer8 != NULL && $userAnswer->answer9 != NULL && $userAnswer->answer10 != NULL);
 
-            $m5 = ($userprofile->approve_filename != NULL);
+            $m5 = ($userprofile->approve_filename != NULL && $userprofile->image_filename != NULL);
 
             $m4 =($userprofile->a2bgen != NULL && $userprofile->a2b_researchgroup != NULL && $userprofile->a2b_department != NULL && $userprofile->a2b_facility != NULL && $userprofile->entrance_facility != NULL && $userprofile->entrance_department != NULL);
 
@@ -194,13 +194,5 @@ class ApiController extends Controller
                 'answer10' => ($answer->answer10 != NULL),
             ]);
         }
-    }
-
-    public function uploadDoc(Request $request) {
-        return $request->input();
-        $this->validate($request, [
-            'uploaddoc' => 'file|required'
-        ]);
-        return 'OK';
     }
 }

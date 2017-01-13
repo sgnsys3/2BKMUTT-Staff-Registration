@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\UserProfile;
 use App\UserAnswer;
+use Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -47,11 +48,13 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+
     protected function validator(array $data)
     {
+
         return Validator::make($data, [
             'name' => 'required|max:255',
-            'email' => 'required|max:255|unique:users',
+            'username' => 'required|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
     }
@@ -62,9 +65,10 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return User
      */
+
     protected function create(array $data)
     {
-        Validator::make($data, [
+        Validator::validate($data, [
             'name' => 'required|string',
             'lastname' => 'required|string',
             'dob' => 'required|date',
@@ -74,11 +78,11 @@ class RegisterController extends Controller
             'allergies' => 'string',
             'drug' => 'string',
             'telephone' => 'required|digits_between:9,10',
-            'emailUser' => 'required|email'
+            'email' => 'required|email'
         ]);
         $temp = User::create([
             'name' => $data['name'],
-            'email' => $data['email'],
+            'username' => $data['username'],
             'password' => bcrypt($data['password']),
         ]);
         UserAnswer::firstOrNew(['user_id' => $temp->id])->save();
@@ -95,7 +99,7 @@ class RegisterController extends Controller
         $userData->disase = $data['disase'];
         $userData->allergies = $data['allergies'];
         $userData->drug = $data['drug'];
-        $userData->email = $data['emailUser'];
+        $userData->email = $data['email'];
         $userData->save();
         return $temp;
     }

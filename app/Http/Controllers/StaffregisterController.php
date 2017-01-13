@@ -24,7 +24,7 @@ class StaffRegisterController extends Controller
             'disase' => 'string',
             'allergies' => 'string',
             'drug' => 'string',
-            'telephone' => 'required|digits_between:9,10',
+            'telephone' => 'required|numeric|between:9,10',
             'email' => 'required|email'
         ]);
     }

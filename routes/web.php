@@ -18,6 +18,7 @@ Route::get('/regis/step1', 'StaffRegisterController@step1');
 Route::post('/regis/step2', 'StaffRegisterController@postStep2');
 Route::get('/regis/step2', 'StaffRegisterController@step2');
 Route::get('/regis/step4', 'Step4RegisterController@step4');
+Route::post('/regis/step4', 'Step4RegisterController@uploadDoc');
 Route::get('/regis/quiz', 'Step4RegisterController@quiz');
 Route::get('/logout', 'Step4RegisterController@logout');
 
@@ -28,7 +29,6 @@ Route::post('/api/2binfo', 'ApiController@a2bInfo');
 Route::post('/api/iscomplete', 'ApiController@isComplete');
 Route::post('/api/answer', 'ApiController@answer');
 Route::post('/api/answercheck', 'ApiController@answerCheck');
-Route::post('/api/docinfo', 'ApiController@uploadDoc');
 
 Route::post('/api/test', 'ApiController@testApi');
 

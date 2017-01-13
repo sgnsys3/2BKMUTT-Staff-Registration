@@ -19,7 +19,7 @@
                     </div>
                     <div class="col l12 m12 s12">
                         <div class="input-field col s12">
-                            <input name="email" id="username" type="text" class="validate" required>
+                            <input name="username" id="username" type="text" class="validate" required>
                             <label for="username">ชื่อผู้ใช้</label>
                         </div>
                         <div class="input-field col s12">
