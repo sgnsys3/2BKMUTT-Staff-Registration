@@ -170,6 +170,10 @@
 <div id="parentinfo" class="modal">
     <div class="modal-content">
         <h4 class="red-text text-accent-1">ข้อมูลผู้ปกครอง</h4>
+        <blockquote>
+            <p>น้องจะต้องกรอกข้อมูลในส่วนของผู้ปกครอง (ติดต่อในกรณีฉุกเฉิน)</p>
+            <p>ในส่วนของข้อมูลบิดา มารดา ไม่จำเป็นต้องกรอกก็ได้</p>
+        </blockquote>
         <form data-mode="3" data-url="/api/parentinfo" class="preventForm" id="schoolinfoForm">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="row">
