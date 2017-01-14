@@ -78,7 +78,8 @@ class RegisterController extends Controller
             'allergies' => 'string',
             'drug' => 'string',
             'telephone' => 'required|digits_between:9,10',
-            'email' => 'required|email'
+            'email' => 'required|email',
+            'nickname' => 'required|string'
         ]);
         $temp = User::create([
             'name' => $data['name'],
@@ -90,6 +91,7 @@ class RegisterController extends Controller
             'user_id' => $temp->id
         ]);
         $userData->name = $data['name'];
+        $userData->nickname = $data['nickname'];
         $userData->lastname = $data['lastname'];
         $userData->dob = $data['dob'];
         $userData->telephone = $data['telephone'];
