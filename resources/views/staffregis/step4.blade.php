@@ -233,7 +233,8 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="row">
                 <div class="input-field col s12 m5 l4">
-                    <input name="2bgen" id="2bgen" type="number" class="validate" placeholder="13 หรือ 12" max="13" min="12" value="{{ $currentData->a2bgen }}" required>
+                    <input name="2bgen" type="hidden" value="13">
+                    <input id="2bgen" type="number" value="13" disabled>
                     <label for="2bgen">นักเรียนโครงการ 2B-KMUTT รุ่นที่</label>
                 </div>
                 <div class="input-field col s12 m7 l8">
@@ -274,9 +275,9 @@
 
 <div id="uploadDocument" class="modal">
     <div class="modal-content">
-        <h4 class="red-text text-accent-1">เอกสารขออนุญาติผู้ปกครอง</h4>
+        <h4 class="red-text text-accent-1">ไฟล์เพิ่มเติม</h4>
         <blockquote>
-            <p>ให้น้องแสกนเอกสาร และอัพโหลดในสกุลไฟล์ .pdf</p>
+            <p>ดาวน์โหลดเอกสาร <a href="https://goo.gl/uUQrpV" target="_blank">ขออนุญาติผู้ปกครอง</a> ให้ผู้ปกครองลงชื่อและอัพโหลดในสกุลไฟล์ .pdf</p>
         </blockquote>
         <form method="post" enctype="multipart/form-data">
             <div class="row">

@@ -84,7 +84,7 @@ class ApiController extends Controller
     public function a2binfo(Request $request) {
         if (!Auth::check()) return response('ERROR', 403);
         $this->validate($request, [
-            '2bgen' => 'required|integer|max:13|min:10',
+            '2bgen' => 'required|integer|max:13|min:13',
             'researchgroup' => 'required|string',
             'facility' => 'required|string',
             'department' => 'required|string',
