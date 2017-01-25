@@ -34,6 +34,7 @@ class StaffRegisterController extends Controller
     public function checkCompleteUser() {
         $user = DB::table('user_profiles')->join('user_answers','user_profiles.user_id','user_answers.user_id')->get();
         $allUser = 0;
+        $display = "";
         foreach ($user as $value) {
             $arr = (array)$value;
             $isOK = true;
@@ -44,8 +45,11 @@ class StaffRegisterController extends Controller
                     }
                 }
             }
-            if($isOK) $allUser++;
+            if($isOK) {
+                $allUser++;
+                $display .= $value->name . " " . $value->lastname . "<br>";
+            }
         }
-        return $allUser;
+        return $allUser . "<br>" . $display;
     }
 }
