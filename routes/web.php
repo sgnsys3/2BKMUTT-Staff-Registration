@@ -21,6 +21,7 @@ Route::get('/regis/step4', 'Step4RegisterController@step4');
 Route::post('/regis/step4', 'Step4RegisterController@uploadDoc');
 Route::get('/regis/quiz', 'Step4RegisterController@quiz');
 Route::get('/logout', 'Step4RegisterController@logout');
+Route::get('/chkregis','StaffRegisterController@checkCompleteUser');
 
 Route::post('/api/schoolinfo', 'ApiController@schoolInfo');
 Route::post('/api/homeinfo', 'ApiController@homeInfo');

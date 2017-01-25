@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class StaffRegisterController extends Controller
 {
@@ -27,5 +29,23 @@ class StaffRegisterController extends Controller
             'telephone' => 'required|numeric|between:9,10',
             'email' => 'required|email'
         ]);
+    }
+
+    public function checkCompleteUser() {
+        $user = DB::table('user_profiles')->join('user_answers','user_profiles.user_id','user_answers.user_id')->get();
+        $allUser = 0;
+        foreach ($user as $value) {
+            $arr = (array)$value;
+            $isOK = true;
+            foreach ($arr as $key => $arrValue) {
+                if($key != 'facebook' && $key != 'nickname' && $key != 'ispass' && $key != 'status') {
+                    if($arrValue == NULL) {
+                        $isOK = false;
+                    }
+                }
+            }
+            if($isOK) $allUser++;
+        }
+        return $allUser;
     }
 }
