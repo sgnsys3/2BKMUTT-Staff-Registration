@@ -50,6 +50,6 @@ class StaffRegisterController extends Controller
                 $display .= $value->name . " " . $value->lastname . "<br>";
             }
         }
-        return $allUser . "<br>" . $display;
+        return $allUser . "<br>";
     }
 }
