@@ -39,7 +39,20 @@ class StaffRegisterController extends Controller
             $isOK = true;
             $tempError = "";
             foreach ($arr as $key => $arrValue) {
-                if($key != 'facebook' && $key != 'nickname' && $key != 'ispass' && $key != 'status') {
+                if( $key != 'facebook' && 
+                    $key != 'nickname' && 
+                    $key != 'ispass' && 
+                    $key != 'status' &&
+                    $key != 'allergies' &&
+                    $key != 'drug' &&
+                    $key != 'mooban' &&
+                    $key != 'soi' &&
+                    $key != 'dad_name' &&
+                    $key != 'dad_lastname' &&
+                    $key != 'dad_telephone' &&
+                    $key != 'mom_name' &&
+                    $key != 'mom_lastname' &&
+                    $key != 'mom_telephone') {
                     if($arrValue == NULL) {
                         $isOK = false;
                         $tempError .= $key . " ";
