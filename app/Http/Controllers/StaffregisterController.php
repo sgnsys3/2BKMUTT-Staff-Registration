@@ -33,35 +33,26 @@ class StaffRegisterController extends Controller
 
     public function checkCompleteUser() {
         $user = DB::table('user_profiles')->join('user_answers','user_profiles.user_id','user_answers.user_id')->get();
-        $allArray = $user->count();
-        $allUser = 0;
-        $oneUser = 0;
-        $twoUser = 0;
-        $threeUser = 0;
-        $fourUser = 0;
         $display = "";
         foreach ($user as $arrKey => $value) {
             $arr = (array)$value;
             $isOK = true;
-            $errorAttempt = 0;
+            $tempError = "";
             foreach ($arr as $key => $arrValue) {
                 if($key != 'facebook' && $key != 'nickname' && $key != 'ispass' && $key != 'status') {
                     if($arrValue == NULL) {
                         $isOK = false;
-                        $errorAttempt++;
+                        $tempError .= $key . " ";
                     }
                 }
             }
             if($isOK) {
-                $allUser++;
+                $display .= '<div style="color:green">'. $arr['name'] . " " . $arr['lastname'] . ' TEL: ' . $arr['telephone'] . ' ' . '</div><br>';
             }
             else {
-                if($errorAttempt == 1) $oneUser++;
-                else if($errorAttempt == 2) $twoUser++;
-                else if($errorAttempt == 3) $threeUser++;
-                else if($errorAttempt == 4) $fourUser++;
+                $display .= '<div style="color:red">'. $arr['name'] . " " . $arr['lastname'] . ' TEL: ' . $arr['telephone'] .' Missing: ' . $tempError .'</div><br>';
             }
         }
-        return "Complete : " . $allUser . "<br>" . "Required1 : " . $oneUser . "<br>". "Required2 : " . $twoUser . "<br>". "Required3 : " . $threeUser . "<br>". "Required4 : " . $fourUser . "<br>";
+        return $display;
     }
 }
