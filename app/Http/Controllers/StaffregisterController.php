@@ -34,6 +34,7 @@ class StaffRegisterController extends Controller
     public function checkCompleteUser() {
         $user = DB::table('user_profiles')->join('user_answers','user_profiles.user_id','user_answers.user_id')->get();
         $display = "";
+        $complete = 0;
         foreach ($user as $arrKey => $value) {
             $arr = (array)$value;
             $isOK = true;
@@ -43,6 +44,7 @@ class StaffRegisterController extends Controller
                     $key != 'nickname' && 
                     $key != 'ispass' && 
                     $key != 'status' &&
+                    $key != 'disase' &&
                     $key != 'allergies' &&
                     $key != 'drug' &&
                     $key != 'mooban' &&
@@ -60,12 +62,13 @@ class StaffRegisterController extends Controller
                 }
             }
             if($isOK) {
+                $complete++;
                 $display .= '<div style="color:green">'. $arr['name'] . " " . $arr['lastname'] . ' TEL: ' . $arr['telephone'] . ' ' . '</div><br>';
             }
             else {
                 $display .= '<div style="color:red">'. $arr['name'] . " " . $arr['lastname'] . ' TEL: ' . $arr['telephone'] .' Missing: ' . $tempError .'</div><br>';
             }
         }
-        return $display;
+        return '<h3> Complete: ' . $complete . '</h3><br>' . $display;
     }
 }
